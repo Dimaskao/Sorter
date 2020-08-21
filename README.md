@@ -1,85 +1,126 @@
-Default Project
-===============
+# Library for sorting
+This library can sort array with numbers and letters.
+# Table of contents
+* [Installation](#Installation)
+* [How to use](#How-to-use)
+    * [General](#General)
+    * [NullSorter](#NullSorter)
+* [Library extension](#Library-extension)
+* [Example](#Example)
+## Installation
+You can use composer to install this extension.
 
-This is a default structure for PHP projects. With this template you can speed up the process of creating of new:
-open-source, proprietary, test, demo and etc. projects!
+Just run:
+```
+$ composer require dimaskao/sorter
+```
+## How to use
+### General
+At first include this library classes: 
+```php
+require_once __DIR__ . '/XXXXX/vendor/autoload.php';
 
-This template has basic configuration for [PHPUnit](https://github.com/sebastianbergmann/phpunit) and
-[PHP-CS-Fixer](https://github.com/friendsofphp/php-cs-fixer) libraries, configured `composer.json`
-with PSR-4 namespaces for source code and tests, `.gitignore` with basic files and directories to exclude them from Git, changelog file
-and README with cool  badges :)
+use Dimaskao\Sorter\Sorter //required class
 
-[![Packagist](https://img.shields.io/packagist/v/greeflas/default-project.svg)](CHANGELOG.md)
-[![Packagist](https://img.shields.io/packagist/dt/greeflas/default-project.svg)](https://packagist.org/packages/greeflas/default-project)
-![Custom badge](https://img.shields.io/badge/greeflas-default--project-red.svg)
+use Dimaskao\Sorter\NullSorter; //|\
+use Dimaskao\Sorter\SortASC;    //|- Choose what you need
+use Dimaskao\Sorter\SortDESC;   //|/
+```
+Where `XXXXX` path to library root folder. 
 
-Installation
-------------
-
-For creating new project based on this template just execute the following command
-
-```bash
-$ composer create-project greeflas/default-project project-name
+If you want to sort array create `Sorter` object and pass `SortASC` or `SortDESC` object.
+```php
+$sorter = new Sorter(new SortASC());
 ```
 
-> NOTE: You can add `--no-dev` right after `create-project` flag if you don't want to install dev dependencies to your project
-
-Usage
------
-
-Main changes that you need to do:
-
-1. Update `name`, `description`, `keywords`, `authors` section of the `composer.json` file, [lines 2-4](composer.json#L2-L4), [9-10](composer.json#L9-L10).
-
-2. Update header template in `.php_cs.dist` file, [lines 4-9](.php_cs.dist#L4-L9).
-
-3. Update copyright in `LICENSE` file, [line 3](LICENSE#L3).
-
-Other changes that you may do:
-
-1. Change namespace for source code in `composer.json`, [line 23](composer.json#L23) and for tests [line 28](composer.json#L28).
-
-2. Change PHP version in `composer.json` [line 16](composer.json#L15).
-
-3. Change rules for code style in `.php_cs.dist` file.
-
-4. Add some new files and directories to `.gitignore` file to exclude them from Git.
-
-5. Update readme according to your project
-
-6. Update changelog according to your project
-
-Code style fixer
-----------------
-
-To check the code style just run the following command
-
-
-```bash
-$ composer cs-check
+Then use `->sort()` method and pass an array to it.
+This method will return a sorted array.
+```php
+$sorter->sort($array);
 ```
 
+This library use Strategy patterns so you can cheng sorting method by `-setSorter()`.
+Just pass it a new sort object.
+```php
+$sorter = new Sorter(new SortDESC());
 
-to fix the code style run next command
-
-```bash
-$ composer cs-fix
+$sorter->setSorter(new SortASC());
 ```
-
-Tests
------
-
-You can run tests with composer command
-
-```bash
-$ composer tests
+### NullSorter
+For debugging you can use `NullSorter()`.
+```php
+$sorter->setSorter(new SortASC());//this will sort array
+$sorter->setSorter(new NullSorter());//this would not sort array
+$b = $sorter->sort($arr);
 ```
+## Library extension
+If you would add new formats of sorting, you should create your own class 
+which implements `SorterInterface.php`.
+```php
+require_once __DIR__ . '/vendor/autoload.php';
 
-License
--------
+use Dimaskao\Sorter\SorterInterface;
 
-[![license](https://img.shields.io/github/license/greeflas/default-project.svg)](LICENSE)
+class YourFormat implements SorterInterface {
 
-This project is released under the terms of the BSD-3-Clause [license](LICENSE).
+}
+```
+## Example
+Let's see how it works.
+```php
+require_once __DIR__ . 'vendor/autoload.php';
 
-Copyright (c) 2018 - 2020, Volodymyr Kupriienko
+use Dimaskao\Sorter\NullSorter;
+use Dimaskao\Sorter\SortASC;
+use Dimaskao\Sorter\SortDESC;
+use Dimaskao\Sorter\Sorter;
+
+$arr = [9, 0, 1, 5, 77, -5];
+
+$sorter = new Sorter(new SortDESC());
+$a = $sorter->sort($arr);
+
+\print_r($a);
+
+$sorter->setSorter(new SortASC());
+$b = $sorter->sort($arr);
+
+\print_r($b);
+
+$sorter->setSorter(new SortASC());
+$sorter->setSorter(new NullSorter());
+$b = $sorter->sort($arr);
+
+\print_r($b);
+
+```
+As a result, we get.
+```php
+Array
+(
+    [4] => 77
+    [0] => 9
+    [3] => 5
+    [2] => 1
+    [1] => 0
+    [5] => -5
+)
+Array
+(
+    [5] => -5
+    [1] => 0
+    [2] => 1
+    [3] => 5
+    [0] => 9
+    [4] => 77
+)
+Array
+(
+    [0] => 9
+    [1] => 0
+    [2] => 1
+    [3] => 5
+    [4] => 77
+    [5] => -5
+)
+```
