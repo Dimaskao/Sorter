@@ -1,8 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * This library can sort array.
+ */
 
 namespace Dimaskao\Sorter;
-
 
 class Sorter
 {
@@ -13,7 +17,7 @@ class Sorter
         $this->strategy = $strategy;
     }
 
-    public function setStrategy(SorterInterface $strategy)
+    public function setSorter(SorterInterface $strategy): void
     {
         $this->strategy = $strategy;
     }
