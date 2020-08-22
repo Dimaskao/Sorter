@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Dimaskao\Sorter;
 
 /**
- * Class SortDESC.
+ * The SortASC class sorts the array in descending order.
  */
-class SortDESC implements SorterInterface
+final class SortDESC implements SorterInterface
 {
     public function sort(array $array): array
     {
