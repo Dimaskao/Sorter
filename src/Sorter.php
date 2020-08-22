@@ -2,30 +2,28 @@
 
 declare(strict_types=1);
 
-/*
- * This library can sort array.
- */
-
 namespace Dimaskao\Sorter;
 
+/**
+ * Class Sorter.
+ */
 class Sorter
 {
-    private $strategy;
+    /** @var object Contain object of sorter */
+    private object $sorter;
 
-    public function __construct($strategy)
+    public function __construct($sorter)
     {
-        $this->strategy = $strategy;
+        $this->sorter = $sorter;
     }
 
-    public function setSorter(SorterInterface $strategy): void
+    public function setSorter(SorterInterface $sorter): void
     {
-        $this->strategy = $strategy;
+        $this->sorter = $sorter;
     }
 
     public function sort(array $array): array
     {
-        $result = $this->strategy->sort($array);
-
-        return $result;
+        return $this->sorter->sort($array);
     }
 }

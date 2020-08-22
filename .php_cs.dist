@@ -1,7 +1,6 @@
 <?php
 
 $header = <<<HEADER
-This library can sort array.
 HEADER;
 
 $finder = \PhpCsFixer\Finder::create()
