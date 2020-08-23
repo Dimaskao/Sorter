@@ -5,16 +5,16 @@ declare(strict_types=1);
 namespace Dimaskao\Sorter;
 
 /**
- * Class Sorter
+ * Class Sorter.
  *
  * Contain logics for "Strategy" pattern.
  */
 final class Sorter
 {
-    /** @var object Contain object of sorter */
-    private object $sorter;
+    /** @var SorterInterface Contain object of sorter */
+    private $sorter;
 
-    public function __construct(object $sorter)
+    public function __construct(SorterInterface $sorter)
     {
         $this->sorter = $sorter;
     }
