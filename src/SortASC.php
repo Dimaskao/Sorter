@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace Dimaskao\Sorter;
 
 /**
- * The SortASC class sorts the array in ascending order.
+ * Class SortASC
+ *
+ * Sorts the array in ascending order.
  */
 final class SortASC implements SorterInterface
 {

@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace Dimaskao\Sorter;
 
 /**
- * Class Sorter contain logics for "Strategy" pattern.
+ * Class Sorter
+ *
+ * Contain logics for "Strategy" pattern.
  */
 final class Sorter
 {

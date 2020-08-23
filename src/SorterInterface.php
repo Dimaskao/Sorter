@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace Dimaskao\Sorter;
 
 /**
- * Interface SorterInterface describes the sort() method.
+ * Interface SorterInterface
+ *
+ * Describes the sort() method.
  */
 interface SorterInterface
 {
