@@ -12,7 +12,7 @@ namespace Dimaskao\Sorter;
 final class Sorter
 {
     /** @var SorterInterface Contain object of sorter */
-    private $sorter;
+    private SorterInterface $sorter;
 
     public function __construct(SorterInterface $sorter)
     {
