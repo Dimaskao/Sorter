@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [2.0.0] - 2020-08-23
 ### Changed
+Edited Sorter.php
+
+## [2.0.0] - 2020-08-23
+### Changed
 Fixed Sorter.php
 
 ## [1.0.1] - 2020-08-22
